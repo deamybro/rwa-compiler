@@ -34,6 +34,6 @@ AI interprets. Deterministic systems verify. X Layer enforces.
 
 **7/** Live demo: https://rwa-compiler.meboebube48.chatgpt.site
 
-GitHub: USER REQUIRED AFTER REPOSITORY PUBLISHING
+GitHub: https://github.com/deamybro/rwa-compiler
 
 X Layer RWA Compiler contracts: USER REQUIRED AFTER VERIFIED DEPLOYMENT

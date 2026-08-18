@@ -26,7 +26,7 @@ Project Description: Use the description above.
 
 Project URL: https://rwa-compiler.meboebube48.chatgpt.site
 
-Github: USER REQUIRED AFTER REPOSITORY PUBLISHING
+Github: https://github.com/deamybro/rwa-compiler
 
 Email: USER REQUIRED BEFORE SUBMISSION
 
@@ -39,6 +39,8 @@ X Post URL: USER REQUIRED AFTER PUBLISHING
 ## Verified technical status
 
 Frontend: PUBLIC AND VERIFIED — https://rwa-compiler.meboebube48.chatgpt.site
+
+GitHub: PUBLIC AND VERIFIED — https://github.com/deamybro/rwa-compiler
 
 X Layer data/RPC: VERIFIED — chain IDs 196/1952; NVDAx bytecode and multiplier read
 

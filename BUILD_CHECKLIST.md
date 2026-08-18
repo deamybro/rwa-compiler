@@ -11,6 +11,7 @@
 - [x] Demonstrate NORMAL → WATCH → PAUSE → UPDATED → NORMAL and guarded-action rejection.
 - [x] Verify lint, types, unit tests, Solidity compilation, production build, routes, metadata, live APIs, X Layer RPCs, token bytecode, and multiplier read.
 - [x] Publish and verify the public production app over HTTPS.
+- [x] Publish and verify the public GitHub repository.
 - [x] Finish README, architecture/security/deployment docs, fixtures, demo script, submission payload, CI, and X copy.
 
 ## External blockers
@@ -18,7 +19,5 @@
 - [ ] Deploy RWA Compiler contracts to X Layer testnet: funded `DEPLOYER_PRIVATE_KEY` required.
 - [ ] Smoke-test testnet contracts, then deploy minimal contracts to mainnet: same funded wallet and explicit gas availability required.
 - [ ] Enable live AI extraction: `AI_API_KEY` required; app currently labels deterministic development extraction honestly.
-- [ ] Publish GitHub repository and supply its URL.
 - [ ] Create/authenticate dedicated X account and publish prepared thread.
 - [ ] Supply email and Telegram, then submit the prepared hackathon payload.
-
