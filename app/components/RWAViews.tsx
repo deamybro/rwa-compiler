@@ -1,9 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
+import type { RegistryVerification } from "@/src/lib/onchain/registry";
 import type { RWAPassport } from "@/src/lib/passport/schema";
 
-type PassportResult = { passport: RWAPassport; hash: string; selectedBecause?: string };
+type PassportResult = { passport: RWAPassport; hash: string; selectedBecause?: string; onchain?: RegistryVerification };
 type AssetListItem = PassportResult | { symbol: string; error: string };
 
 const nav = [
@@ -17,7 +19,7 @@ const nav = [
 export function SiteHeader({ active }: { active?: string }) {
   return (
     <header className="app-header">
-      <a className="brand" href="/"><span className="brand-mark">R</span><span>RWA Compiler</span></a>
+      <Link className="brand" href="/"><span className="brand-mark">R</span><span>RWA Compiler</span></Link>
       <nav aria-label="Primary navigation">
         {nav.map(([label, href]) => <a className={active === label.toLowerCase() ? "active" : ""} href={href} key={href}>{label}</a>)}
       </nav>
@@ -123,6 +125,8 @@ export function AssetView({ symbol }: { symbol: string }) {
   if (error) return <PageFrame active="terminal"><div className="error-state large"><b>Unable to compile {symbol}</b><span>{error}. No fixture has replaced the failed live source.</span></div></PageFrame>;
   if (!result) return <PageFrame active="terminal"><div className="passport-loading"><span className="live-dot" /> Compiling live Passport…</div></PageFrame>;
   const p = result.passport;
+  const onchain = result.onchain ?? { status: "NOT_CONFIGURED", matches: null, registryAddress: null, manifestHash: null, version: null, checkedAt: null };
+  const onchainBadge = onchain.status === "MATCH" ? "ALLOW" : onchain.status === "MISMATCH" ? "PAUSE" : "WATCH";
 
   return (
     <PageFrame active="terminal">
@@ -138,7 +142,24 @@ export function AssetView({ symbol }: { symbol: string }) {
         <section className="detail-card wide"><div className="card-heading"><div><p className="micro-label">CORPORATE ACTION TIMELINE</p><h3>{p.corporateAction.status === "NONE" ? "No pending activation" : p.corporateAction.type}</h3></div><span className="source-chip">OFFICIAL MULTIPLIER SOURCE</span></div><div className="timeline"><i /><div><b>Current multiplier verified</b><span>{Number(p.multiplier.current).toFixed(9)}</span></div><i className={p.corporateAction.status === "UPCOMING" ? "upcoming" : ""} /><div><b>{p.corporateAction.status === "UPCOMING" ? "Activation scheduled" : "Continuous monitoring"}</b><span>{p.corporateAction.effectiveAt ? new Date(p.corporateAction.effectiveAt).toUTCString() : "No pending multiplier published"}</span></div></div></section>
         <section className="detail-card"><p className="micro-label">BACKING / PROOF OF RESERVES</p><h3>{p.proofOfReserves.status}</h3><dl><div><dt>Shares held</dt><dd>{p.proofOfReserves.sharesHeld ?? "Unavailable"}</dd></div><div><dt>Circulating supply</dt><dd>{p.proofOfReserves.circulatingSupply ?? "Unavailable"}</dd></div><div><dt>Verified at</dt><dd>{p.proofOfReserves.timestamp ? new Date(p.proofOfReserves.timestamp).toUTCString() : "Unavailable"}</dd></div></dl></section>
         <section className="detail-card"><p className="micro-label">PRICE + MARKET</p><h3>{p.price.value === null ? "Unavailable" : `$${p.price.value.toFixed(2)}`}</h3><dl><div><dt>Market state</dt><dd>{p.market.state}</dd></div><div><dt>Source status</dt><dd>{p.price.status}</dd></div><div><dt>Retrieved</dt><dd>{p.price.timestamp ? new Date(p.price.timestamp).toUTCString() : "Unavailable"}</dd></div></dl></section>
-        <section className="detail-card wide"><div className="card-heading"><div><p className="micro-label">ONCHAIN PROOF</p><h3>Passport integrity</h3></div><StatusBadge status={process.env.NEXT_PUBLIC_REGISTRY_ADDRESS ? "ALLOW" : "WATCH"} /></div><div className="hash-proof"><div><span>LOCAL CANONICAL HASH</span><code>{result.hash}</code></div><button onClick={() => { navigator.clipboard.writeText(result.hash); setCopied(true); }}>{copied ? "Copied" : "Copy hash"}</button></div><p className="honesty-note">{process.env.NEXT_PUBLIC_REGISTRY_ADDRESS ? "Registry comparison is enabled for the configured deployment." : "No verified registry deployment is configured yet. The local canonical hash is real; onchain match is intentionally not claimed."}</p></section>
+        <section className="detail-card wide">
+          <div className="card-heading"><div><p className="micro-label">ONCHAIN PROOF</p><h3>Passport integrity</h3></div><StatusBadge status={onchainBadge} /></div>
+          <div className="hash-proof">
+            <div><span>LOCAL CANONICAL HASH</span><code>{result.hash}</code></div>
+            <button onClick={() => { navigator.clipboard.writeText(result.hash); setCopied(true); }}>{copied ? "Copied" : "Copy hash"}</button>
+          </div>
+          {onchain.manifestHash && <div className="hash-proof"><div><span>ONCHAIN MANIFEST HASH · VERSION {onchain.version}</span><code>{onchain.manifestHash}</code></div></div>}
+          {onchain.registryAddress && <p className="honesty-note">Registry: <code>{onchain.registryAddress}</code></p>}
+          <p className="honesty-note">
+            {onchain.status === "MATCH"
+              ? `Verified: the X Layer registry manifest hash matches this canonical Passport hash. Checked ${onchain.checkedAt ? new Date(onchain.checkedAt).toUTCString() : "now"}.`
+              : onchain.status === "MISMATCH"
+                ? "Mismatch: the registry manifest hash differs from this newly compiled Passport. No onchain match is claimed."
+                : onchain.status === "UNAVAILABLE"
+                  ? "The registry is configured but its current state could not be read. No onchain match is claimed."
+                  : "No verified registry deployment is configured yet. The local canonical hash is real; onchain match is intentionally not claimed."}
+          </p>
+        </section>
         <section className="detail-card full"><div className="card-heading"><div><p className="micro-label">WHY DOES RWA COMPILER BELIEVE THIS?</p><h3>Provenance ledger</h3></div><span>{p.provenance.length} material claims</span></div><div className="provenance-table">{p.provenance.map((source) => <details key={`${source.field}-${source.sourceUri}`}><summary><b>{source.field}</b><span>{source.verification}</span><time>{new Date(source.retrievedAt).toLocaleTimeString()}</time></summary><div><a href={source.sourceUri} target="_blank" rel="noreferrer">Open authoritative source ↗</a><code>{source.contentHash}</code>{source.note && <p>{source.note}</p>}</div></details>)}</div></section>
         <section className="detail-card full developer-snippet"><p className="micro-label">DEVELOPER INTEGRATION</p><pre>{`const result = await fetch("/api/preflight", {\n  method: "POST",\n  body: JSON.stringify({ asset: "${p.asset.symbol}", action: "SWAP" })\n}).then(r => r.json());\n\nif (!result.allowed) throw new Error(result.reason);`}</pre></section>
       </div>

@@ -1,10 +1,12 @@
+import { verifyRegistryPassport } from "@/src/lib/onchain/registry";
 import { compilePassport } from "@/src/lib/passport/compiler";
 
 export async function GET(_request: Request, context: { params: Promise<{ symbol: string }> }) {
   try {
     const { symbol } = await context.params;
     const { passport, hash } = await compilePassport(symbol);
-    return Response.json({ passport, passportHash: hash, canonicalHashAlgorithm: "keccak256(canonical-json)" }, {
+    const onchain = await verifyRegistryPassport(passport.asset.symbol, hash);
+    return Response.json({ passport, passportHash: hash, canonicalHashAlgorithm: "keccak256(canonical-json)", onchain }, {
       headers: { "cache-control": "public, max-age=15, stale-while-revalidate=45" },
     });
   } catch (error) {

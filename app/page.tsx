@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,13 +8,15 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const registryConfigured = Boolean(process.env.NEXT_PUBLIC_REGISTRY_ADDRESS);
+
   return (
     <main>
       <nav className="nav-shell" aria-label="Primary navigation">
-        <a className="brand" href="/" aria-label="RWA Compiler home">
+        <Link className="brand" href="/" aria-label="RWA Compiler home">
           <span className="brand-mark">R</span>
           <span>RWA Compiler</span>
-        </a>
+        </Link>
         <div className="nav-links">
           <a href="/terminal">Terminal</a>
           <a href="/compiler">Compiler</a>
@@ -21,7 +24,7 @@ export default function Home() {
           <a href="/developers">Developers</a>
         </div>
         <a className="network-pill" href="/terminal">
-          <span /> X Layer · Live
+          <span /> X Layer Data · Live
         </a>
       </nav>
 
@@ -55,8 +58,8 @@ export default function Home() {
               <span>PRE-FLIGHT TERMINAL</span>
             </div>
             <div className="window-meta">
-              <span className="live-dot" /> LIVE SOURCES
-              <span>UTC 14:32:08</span>
+              <span className="live-dot" /> SOURCE-VERIFIED PREVIEW
+              <span>LIVE DATA VIA API</span>
             </div>
           </div>
           <div className="window-body">
@@ -80,7 +83,7 @@ export default function Home() {
                 <div className="evidence-row"><span>Proof of reserves</span><b>VERIFIED</b></div>
                 <div className="evidence-row"><span>Multiplier</span><strong>1.000000</strong></div>
                 <div className="evidence-row"><span>Corporate action</span><strong>NONE ACTIVE</strong></div>
-                <div className="hash-row"><span>Passport hash</span><code>0x7f3a…2e91</code><b>ONCHAIN MATCH</b></div>
+                <div className="hash-row"><span>Passport hash</span><code>computed per request</code><b>{registryConfigured ? "REGISTRY CONFIGURED" : "REGISTRY PENDING"}</b></div>
               </div>
             </div>
           </div>
