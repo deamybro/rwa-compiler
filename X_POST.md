@@ -4,7 +4,7 @@
 
 **Bio:** AI-powered RWA preflight infrastructure on X Layer. Verified Passports. Machine-readable policies. Safer agent execution.
 
-**Website:** USER REQUIRED AFTER PRODUCTION DEPLOYMENT
+**Website:** https://rwa-compiler.meboebube48.chatgpt.site
 
 # Launch thread
 
@@ -26,15 +26,14 @@ Authoritative xStocks data and deterministic checks verify the facts. Conflicts 
 
 NORMAL → WATCH → PAUSE → UPDATED → NORMAL
 
-During PAUSE, a guarded contract action reverts. Once the multiplier state is verified, execution resumes.
+During PAUSE, a guarded action reverts. Once the multiplier state is verified, execution resumes.
 
 **6/** Built on X Layer. Integrated with public xStocks data. Designed as RWA intelligence + execution-safety infrastructure — not a trading bot or price predictor.
 
 AI interprets. Deterministic systems verify. X Layer enforces.
 
-**7/** Demo: USER REQUIRED AFTER DEPLOYMENT
+**7/** Live demo: https://rwa-compiler.meboebube48.chatgpt.site
 
 GitHub: USER REQUIRED AFTER REPOSITORY PUBLISHING
 
-X Layer contract links: USER REQUIRED AFTER VERIFIED DEPLOYMENT
-
+X Layer RWA Compiler contracts: USER REQUIRED AFTER VERIFIED DEPLOYMENT

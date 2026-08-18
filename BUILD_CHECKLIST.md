@@ -1,20 +1,24 @@
 # RWA Compiler build checklist
 
-## P0 product
+## Completed
 
-- [ ] Verify official X Layer and xStocks interfaces; record exact endpoints and chain metadata.
-- [ ] Implement versioned RWA Passport schema, canonical hashing, provenance, verification, and deterministic policy evaluation.
-- [ ] Integrate resilient live xStocks public-data adapters with honest unavailable/stale states.
-- [ ] Implement the AI extraction provider abstraction with strict validation and deterministic development fixtures.
-- [ ] Build the Solidity registry, policy engine, guarded executor, deployment scripts, and comprehensive contract tests.
-- [ ] Ship the live terminal, asset detail, compiler, demo, developer, and about experiences plus API routes.
-- [ ] Demonstrate NORMAL → WATCH → PAUSE → UPDATED → NORMAL and guarded-action enforcement.
+- [x] Verify official X Layer RPCs, chain IDs, explorers, hackathon requirements, and current xStocks v2 endpoints.
+- [x] Implement versioned Passport schema, canonical hashing, provenance, verification, and deterministic policy.
+- [x] Integrate resilient live xStocks Assets, Price, Multiplier, and Proof-of-Reserves adapters.
+- [x] Implement OpenAI-compatible extraction with strict validation and honest no-key development mode.
+- [x] Build RWARegistry, PolicyEngine, GuardedExecutor, deployment script, and comprehensive Foundry tests.
+- [x] Ship home, terminal, asset, compiler, demo, developer, and about routes plus six API endpoints.
+- [x] Demonstrate NORMAL → WATCH → PAUSE → UPDATED → NORMAL and guarded-action rejection.
+- [x] Verify lint, types, unit tests, Solidity compilation, production build, routes, metadata, live APIs, X Layer RPCs, token bytecode, and multiplier read.
+- [x] Publish and verify the public production app over HTTPS.
+- [x] Finish README, architecture/security/deployment docs, fixtures, demo script, submission payload, CI, and X copy.
 
-## Verification and release
+## External blockers
 
-- [ ] Run lint, typecheck, unit/API tests, contract tests, production build, and route smoke checks.
-- [ ] Deploy and smoke-test X Layer testnet contracts when a funded key is available.
-- [ ] Deploy minimal X Layer mainnet contracts only after testnet verification and gas confirmation.
-- [ ] Publish the frontend and verify HTTPS, metadata, social preview, error handling, and no secret exposure.
-- [ ] Finish README, architecture/security/deployment docs, demo script, submission payload, and X launch copy.
-- [ ] Record only verified URLs, addresses, transaction hashes, and remaining user-owned submission fields.
+- [ ] Deploy RWA Compiler contracts to X Layer testnet: funded `DEPLOYER_PRIVATE_KEY` required.
+- [ ] Smoke-test testnet contracts, then deploy minimal contracts to mainnet: same funded wallet and explicit gas availability required.
+- [ ] Enable live AI extraction: `AI_API_KEY` required; app currently labels deterministic development extraction honestly.
+- [ ] Publish GitHub repository and supply its URL.
+- [ ] Create/authenticate dedicated X account and publish prepared thread.
+- [ ] Supply email and Telegram, then submit the prepared hackathon payload.
+
