@@ -1,0 +1,10 @@
+{
+  "synthetic": true,
+  "name": "Clean normal state",
+  "assetSymbol": "NVDAx",
+  "currentMultiplier": "1.0009180758490996",
+  "pendingMultiplier": null,
+  "effectiveAt": null,
+  "expectedPolicy": "ALLOW"
+}
+

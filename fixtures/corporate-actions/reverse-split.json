@@ -1,0 +1,7 @@
+{
+  "synthetic": true,
+  "name": "Reverse split",
+  "source": "XYZx will undergo a 1-for-10 reverse split effective at 2026-09-01T00:00:00Z.",
+  "expectedEventType": "REVERSE_SPLIT"
+}
+

@@ -1,0 +1,8 @@
+{
+  "synthetic": true,
+  "name": "Stale proof-of-reserves source",
+  "retrievedAt": "2025-01-01T00:00:00Z",
+  "expectedReasonCode": "PROOF_OF_RESERVES_STALE",
+  "expectedPolicy": "PAUSE"
+}
+

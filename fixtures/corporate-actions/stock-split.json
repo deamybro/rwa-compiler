@@ -1,0 +1,8 @@
+{
+  "synthetic": true,
+  "name": "Time-compressed stock split",
+  "source": "TSLAx will undergo a 5-for-1 stock split. The multiplier activates at 2026-08-20T00:00:00Z.",
+  "expectedEventType": "STOCK_SPLIT",
+  "expectedLifecycle": ["ALLOW", "WATCH", "PAUSE", "WATCH", "ALLOW"]
+}
+

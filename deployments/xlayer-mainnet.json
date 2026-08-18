@@ -1,0 +1,10 @@
+{
+  "network": "X Layer Mainnet",
+  "chainId": 196,
+  "status": "NOT_DEPLOYED",
+  "reason": "Deploy only after testnet smoke tests pass and a funded deployer key is confirmed.",
+  "contracts": {},
+  "transactions": [],
+  "explorer": "https://www.okx.com/web3/explorer/xlayer"
+}
+

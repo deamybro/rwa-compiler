@@ -1,0 +1,10 @@
+{
+  "network": "X Layer Testnet",
+  "chainId": 1952,
+  "status": "NOT_DEPLOYED",
+  "reason": "A funded deployer key is required.",
+  "contracts": {},
+  "transactions": [],
+  "explorer": "https://www.okx.com/web3/explorer/xlayer-test"
+}
+

@@ -1,0 +1,9 @@
+{
+  "synthetic": true,
+  "name": "Conflicting source",
+  "source": "NVDAx split activates at 2026-09-01T00:00:00Z.",
+  "authoritativeSource": "No matching pending multiplier",
+  "expectedVerification": "CONFLICT",
+  "expectedPolicy": "PAUSE"
+}
+

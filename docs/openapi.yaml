@@ -1,0 +1,49 @@
+openapi: 3.1.0
+info:
+  title: RWA Compiler API
+  version: 1.0.0
+paths:
+  /api/health:
+    get:
+      summary: Service health and AI configuration state
+      responses: { "200": { description: Healthy } }
+  /api/assets:
+    get:
+      summary: Preferred live RWA Passports
+      responses: { "200": { description: Live assets or explicit per-asset errors } }
+  /api/assets/{symbol}:
+    get:
+      summary: Compile one live Passport
+      parameters:
+        - in: path
+          name: symbol
+          required: true
+          schema: { type: string }
+      responses: { "200": { description: Passport and canonical hash }, "503": { description: Source unavailable } }
+  /api/preflight:
+    post:
+      summary: Deterministic action preflight
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [asset, action]
+              properties:
+                asset: { type: string, example: NVDAx }
+                action: { type: string, example: SWAP }
+      responses: { "200": { description: ALLOW, WATCH, or PAUSE with provenance }, "400": { description: Invalid input } }
+  /api/compiler:
+    post:
+      summary: Extract and verify corporate-action claims
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [source]
+              properties: { source: { type: string, maxLength: 20000 } }
+      responses: { "200": { description: Validated claims and deterministic verification }, "400": { description: Invalid input } }
+

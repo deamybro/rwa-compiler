@@ -1,0 +1,8 @@
+{
+  "synthetic": true,
+  "name": "Dividend reinvestment notice",
+  "source": "AAPLx dividend reinvestment will update the multiplier at 2026-08-20T00:00:00Z.",
+  "expectedEventType": "DIVIDEND",
+  "expectedPolicyBeforeWindow": "WATCH"
+}
+
