@@ -13,6 +13,12 @@
     "test:render": "npm run build && node --test tests/rendered-html.test.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern contracts/lib --ignore-pattern contracts/out",
+    "deploy:check:testnet": "node scripts/deploy-xlayer.mjs --network testnet --check",
+    "deploy:check:mainnet": "node scripts/deploy-xlayer.mjs --network mainnet --check",
+    "deploy:testnet": "node scripts/deploy-xlayer.mjs --network testnet",
+    "deploy:mainnet": "node scripts/deploy-xlayer.mjs --network mainnet",
+    "smoke:testnet": "node scripts/smoke-deployment.mjs --network testnet",
+    "smoke:mainnet": "node scripts/smoke-deployment.mjs --network mainnet",
     "db:generate": "drizzle-kit generate"
   },
   "dependencies": {
@@ -51,4 +57,3 @@
   },
   "type": "module"
 }
-

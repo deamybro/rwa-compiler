@@ -1,5 +1,11 @@
 # Hackathon submission payload
 
+> **Submission gate:** Do not submit until both X Layer deployment records say `DEPLOYED_AND_SMOKE_TESTED`, the public app exposes the verified mainnet addresses, and the dedicated X handle/post plus contact fields below are complete.
+>
+> Official form: https://docs.google.com/forms/d/e/1FAIpQLSfgU_3zcXdxK0GJQxj33QeUWdEcAaYnieVe9p5cFDb2JFQa4Q/viewform?usp=publish-editor
+>
+> Deadline: August 21, 2026 at 23:59 UTC (August 22 at 00:59 WAT).
+
 ## Project Name
 
 RWA Compiler
